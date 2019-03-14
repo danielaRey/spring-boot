@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/layout :: head"></head>
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+
+        <div class="container py-4">
+            <div class="card bg-light">
+                <div class="card-header" th:text=${tittle}></div>
+                <div class="card-body">
+                    <h4 class="cardd-tittle">
+                        <a class=" btn btn-primary" th:href="@{/form}">Create Product</a>
+                    </h4>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th> 
+                            </tr>
+                        </thead>
+                        <tr th:each="product:  ${products}">
+                            <!--<td><a class="btn btn-xs btn-primary" th:href="@{/show/} + ${product.id}" th:text="${product.id}"></a></td>-->
+                            <td th:text="${product.i}"></td>
+                            <td th:text="${product.name}"></td>
+                            <td th:text="${product.createAt}"></td>
+                            <!--<td th:text="${client.email}"></td>
+                            <td th:text="${client.createAt}"></td>-->
+                            <td><a class="btn-xs btn btn-primary"
+                                   th:href="@{/form/} + ${product.id}">Product</a></td>
+                            <td><a class="btn-xs btn btn-danger"
+                                   th:href="@{/delete/} + ${product.id}"
+                                   onclick="return confirm('Are you sure you want to delete it')">Delete</a></td>
+                        </tr>
+                    </table>
+                    <!--<nav th:replace="paginator-nav :: paginator"></nav> -->
+                </div>
+            </div>
+        </div>
+
+
+        <footer th:replace="layout/layout :: footer">
+    </body>
+</html>
